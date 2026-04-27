@@ -1,6 +1,6 @@
-# calculator-app
+# calculator-frontend
 
-calculator-app 是一個計算機小程式專案。
+calculator-frontend 是一個計算機小程式專案。
 
 ## 功能特性
 

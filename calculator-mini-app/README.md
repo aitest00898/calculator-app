@@ -1,6 +1,6 @@
-# calculator-app
+# calculator-mini-app
 
-calculator-app 是一個計算機小程式專案。
+calculator-mini-app 是一個計算機小程式專案。
 
 ## 功能特性
 

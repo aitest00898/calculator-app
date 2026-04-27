@@ -1,58 +1,36 @@
-# 🧮 Calculator Web App
+# calculator-web
 
-一個功能齊全的網頁計算機小程式，支持基本四則運算、百分比計算、歷史記錄等功能。
+calculator-web 是一個計算機小程式專案。
 
-## 🚀 功能特點
+## 功能特性
 
-- **基本運算**：加減乘除
-- **進階功能**：冪運算 (^)、開方 (√)、百分比 (%)、圓周率 (π)、自然對數底 (e)
-- **滑動條輸入**：可透過滑動條快速輸入數字
-- **計算歷史**：自動記錄計算過程和結果
-- **鍵盤支援**：支持鍵盤輸入
-- **響應式設計**：支持各種設備
+- 支援基本的四則運算 (+, -, *, /)
+- 支援百分比計算 (%)
+- 支援括號運算 ()
+- 鍵盤操作支援 (數字鍵、Enter、Backspace、Escape)
+- 響應式設計，支援各種螢幕尺寸
 
-## 📋 使用方法
+## 安裝方式
 
-### 網頁端
-1. 部署後訪問提供的 URL
-2. 在瀏覽器中輸入數字和運算符號
-3. 點擊運算按鈕或按下 Enter 鍵計算結果
-4. 查看計算歷史記錄
-
-### API 端（可選）
 ```bash
-# 安裝後端
+# 安裝依賴
 pip install -r requirements.txt
 
 # 啟動服務
 python app.py
-
-# 使用 API
-curl -X POST -H "Content-Type: application/json" \
-  -d '{"expression": "12 + 34 * 5"}' \
-  http://localhost:5000/api/calculate
 ```
 
-## 🛠️ 技術棧
+## 使用方式
 
-- **前端**：HTML5, CSS3, JavaScript, math.js CDN
-- **後端（可選）**：Flask, Flask-CORS
-- **託管服務**：GitHub Pages（靜態網頁）
+1. 輸入要計算的表達式
+2. 點擊計算按鈕或按 Enter 鍵
+3. 查看計算結果
 
-## 📸 預覽
+## 版本
 
-![Calculator](https://via.placeholder.com/400x600.png?text=Calculator+Preview)
+- Version: 1.0.0
+- Last Updated: 2026 年
 
-## 🐛 已知問題
-
-- 基本版使用 `eval()`（本專案為靜態網頁，安全性要求較低）
-- 歷史記錄僅在本地存儲（刷新網頁即消失）
-- 沒有添加密碼驗證（網頁計算機不需要）
-
-## 📝 授權
+## License
 
 MIT License
-
-## 🙏 開發者
-
-由 AI 助手自動生成
