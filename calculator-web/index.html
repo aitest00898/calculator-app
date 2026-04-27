@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>計算機小程式</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .calculator {
+            background: #222;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .display {
+            background: #f5f5f5;
+            color: #222;
+            padding: 20px;
+            font-size: 28px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            min-height: 50px;
+            overflow-x: auto;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .btn {
+            padding: 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn:hover {
+            opacity: 0.8;
+        }
+        .btn-number {
+            background: #444;
+            color: white;
+        }
+        .btn-operator {
+            background: #ff9500;
+            color: white;
+        }
+        .btn-equal {
+            background: #32d741;
+            color: white;
+        }
+        .btn-clear {
+            background: #ff3b30;
+            color: white;
+        }
+        .btn-del {
+            background: #ff9500;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display" id="display"></div>
+        <div class="buttons">
+            <button class="btn btn-clear" onclick="clearDisplay()">C</button>
+            <button class="btn btn-del" onclick="deleteLast()">DEL</button>
+            <button class="btn btn-operator" onclick="append('/')">/</button>
+            <button class="btn btn-operator" onclick="append('*')">×</button>
+            <button class="btn btn-number" onclick="append('7')">7</button>
+            <button class="btn btn-number" onclick="append('8')">8</button>
+            <button class="btn btn-number" onclick="append('9')">9</button>
+            <button class="btn btn-operator" onclick="append('-')">-</button>
+            <button class="btn btn-number" onclick="append('4')">4</button>
+            <button class="btn btn-number" onclick="append('5')">5</button>
+            <button class="btn btn-number" onclick="append('6')">6</button>
+            <button class="btn btn-operator" onclick="append('+')">+</button>
+            <button class="btn btn-number" onclick="append('1')">1</button>
+            <button class="btn btn-number" onclick="append('2')">2</button>
+            <button class="btn btn-number" onclick="append('3')">3</button>
+            <button class="btn btn-operator" onclick="append('(')">(</button>
+            <button class="btn btn-operator" onclick="append(')')">)</button>
+            <button class="btn btn-operator" onclick="append('%')">%</button>
+            <button class="btn btn-equal" onclick="calculate()">=</button>
+        </div>
+    </div>
+    <script>
+        let currentExpression = '';
+        
+        function updateDisplay() {
+            document.getElementById('display').textContent = currentExpression || '0';
+        }
+        
+        function append(value) {
+            currentExpression += value;
+            updateDisplay();
+        }
+        
+        function clearDisplay() {
+            currentExpression = '';
+            updateDisplay();
+        }
+        
+        function deleteLast() {
+            currentExpression = currentExpression.slice(0, -1);
+            updateDisplay();
+        }
+        
+        function calculate() {
+            try {
+                // 處理百分比和括號
+                currentExpression = currentExpression.replace(/%/g, '/100');
+                const result = eval(currentExpression);
+                currentExpression = String(result);
+                updateDisplay();
+            } catch (e) {
+                currentExpression = 'Error';
+                updateDisplay();
+            }
+        }
+        
+        // 鍵盤支援
+        document.addEventListener('keydown', function(e) {
+            if (e.key >= '0' && e.key <= '9') {
+                append(e.key);
+            } else if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/') {
+                append(e.key);
+            } else if (e.key === 'Enter') {
+                calculate();
+            } else if (e.key === 'Backspace') {
+                deleteLast();
+            } else if (e.key === 'Escape') {
+                clearDisplay();
+            }
+        });
+        
+        // 初始化顯示
+        updateDisplay();
+    </script>
+</body>
+</html>
